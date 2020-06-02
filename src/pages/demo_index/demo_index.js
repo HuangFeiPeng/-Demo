@@ -37,7 +37,7 @@ Page({
   login: function () {
     let options = {
       apiUrl: WebIM.config.apiURL,
-      user: '1c1c',
+      user: '1z1z',
       pwd: '111',
       appKey: WebIM.config.appkey
     };
@@ -72,7 +72,7 @@ Page({
     var msg = new WebIM.message('txt', id);      // 创建文本消息
     msg.set({
         msg: 'message content',                  // 消息内容
-        to: '1z1z',                          // 接收消息对象（用户id）
+        to: 'hfp',                          // 接收消息对象（用户id）
         roomType: false,
         ext: {
             key: '1',
@@ -94,8 +94,8 @@ Page({
     var id = WebIM.conn.getUniqueId();            // 生成本地消息id
     var msg = new WebIM.message('txt', id); // 创建文本消息
     var option = {
-        msg: 'message content',             // 消息内容
-        to: '83587692036097',                     // 接收消息对象(群组id)
+        msg: '群组消息发送测试！',             // 消息内容
+        to: '115310648688641',                     // 接收消息对象(群组id)
         roomType: false,                    // 群聊类型，true时为聊天室，false时为群组
         ext: {},                            // 扩展消息
         success: function () {
@@ -108,5 +108,111 @@ Page({
     msg.set(option);
     msg.setGroup('groupchat');              // 群聊类型
     WebIM.conn.send(msg.body);
+  },
+  //聊天室消息
+  roomMessage: function(){
+    var id = WebIM.conn.getUniqueId();         // 生成本地消息id
+    var msg = new WebIM.message('txt', id); // 创建文本消息
+    var option = {
+        msg: '聊天室消息发送测试',          // 消息内容
+        to: '117006506459137',               // 接收消息对象(聊天室id)
+        roomType: true,                  // 群聊类型，true时为聊天室，false时为群组
+        ext: {},                         // 扩展消息
+        success: function () {
+            console.log('聊天室消息发送成功！');
+        },                               // 对成功的相关定义，sdk会将消息id登记到日志进行备份处理
+        fail: function (e) {
+            console.log('聊天室消息发送失败！',e);
+        }                                // 对失败的相关定义，sdk会将消息id登记到日志进行备份处理
+    };
+    msg.set(option);
+    msg.setGroup('groupchat');           // 群聊类型
+    WebIM.conn.send(msg.body);
+  },
+  //发送url消息
+  urlMessage: function(){
+    var url = 'https://huaban.com/img/long_image_shadow.png';
+        var id = WebIM.conn.getUniqueId(); // 生成本地消息id
+        var msg = new WebIM.message('img', id); // 创建图片消息
+        var option = {
+            body: {
+                type: 'file',
+                url: url,
+                size: {
+                    width: '100',
+                    height: '100',
+                },
+                length: msg.length,
+                filename: 'url测试图片',
+                filetype: msg.filetype
+            },
+            to: 'i', // 接收消息对象,
+            success: function () {
+                console.log('发送成功！');
+            }
+        };
+        msg.set(option);
+        console.log(msg)
+        WebIM.conn.send(msg.body);
+  },
+  cmdMessage: function(){
+    var id = WebIM.conn.getUniqueId(); //生成本地消息id
+        var msg = new WebIM.message('cmd', id); //创建命令消息
+        msg.set({
+            msg: 'msg',
+            to: 'I', //接收消息对象
+            action: '发送的命令消息', //用户自定义，cmd消息必填
+            ext: {
+                'extmsg': 'extends messages'
+            }, //用户自扩展的消息内容（群聊用法相同）
+            success: function (id, serverMsgId) {
+                console.log('>>>>发送命令消息成功！', id, serverMsgId);
+            } //消息发送成功回调   
+        });
+
+
+        // if (  ) {
+        //     msg.setGroup('groupchat');
+        // } else if ( /*如果是发送到聊天室*/ ) {
+        //     msg.body.roomType = true;
+        //     msg.setGroup('groupchat');
+        // }
+
+        WebIM.conn.send(msg.body);
+  },
+  customMessage: function(){
+    var id = WebIM.conn.getUniqueId(); // 生成本地消息id
+        var msg = new WebIM.message('custom', id); // 创建自定义消息
+        var customEvent = "customEvent"; // 创建自定义事件
+        var customExts = {}; // 消息内容，key/value 需要 string 类型
+        msg.set({
+            to: 'i', // 接收消息对象（用户id）
+            customEvent,
+            customExts,
+            ext: {
+                ang: '随意'
+            }, // 消息扩展
+            roomType: false,
+            success: function (id, serverMsgId) {
+                console.log('自定义消息发送成功！', id, serverMsgId);
+            },
+            fail: function (e) {
+                console.log('>>>>自定义发送失败', e);
+            }
+        });
+        WebIM.conn.send(msg.body);
+  },
+  getHiatoryMsg: function(){
+    var options = {
+      queue: "13031081380",
+      isGroup: false,
+      count: 10,
+      success: function(res){
+        console.log('>>>拉取成功！',res);
+      }
   }
+  WebIM.conn.fetchHistoryMessages(options)
+  }
+
+
 })

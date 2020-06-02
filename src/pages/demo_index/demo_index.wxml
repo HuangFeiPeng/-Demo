@@ -24,5 +24,12 @@
         <button bind:tap="roomMessage">发送聊天室消息</button>
         <button bind:tap="urlMessage">发送URL消息</button>
         <button bind:tap="cmdMessage">发送命令消息</button>
+        <button bind:tap="customMessage">发送自定义消息</button>
+        <button bind:tap="getHiatoryMsg">获取历史消息</button>
+    </view>
+    <view class="title-box">
+        <text class="title">
+            发送消息部分
+        </text>
     </view>
 </view>
