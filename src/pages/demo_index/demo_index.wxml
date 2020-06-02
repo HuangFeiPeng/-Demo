@@ -1,0 +1,28 @@
+<view>
+    <view class="title-box">
+        <text class="title">
+            环信小程序Demo
+        </text>
+    </view>
+    <!-- <view class="int">
+        <input class="int-box" id="userId" type="text" bindinput="bindusername" placeholder="用户ID..." />
+        <input class="int-box" id="password" type="text" bindinput="bindpassword" placeholder="用户密码..." />
+    </view> -->
+    <view>
+        <button bind:tap="login">登录</button>
+        <button bind:tap="register">注册</button>
+        <button bind:tap="quit">退出</button>
+    </view>
+    <view class="title-box">
+        <text class="title">
+            发送消息部分
+        </text>
+    </view>
+    <view>
+        <button bind:tap="chatMessage">发送单聊消息</button>
+        <button bind:tap="groupMessage">发送群聊消息</button>
+        <button bind:tap="roomMessage">发送聊天室消息</button>
+        <button bind:tap="urlMessage">发送URL消息</button>
+        <button bind:tap="cmdMessage">发送命令消息</button>
+    </view>
+</view>
