@@ -1,0 +1,23 @@
+<view class="title-box">
+    <text class="title">环信小程序Demo</text>
+</view>
+<view>
+        <button bind:tap="getGroupList">获取当前用户加入的群组</button>
+        <button bind:tap="listGroups">分页获取公开群</button>
+        <button bind:tap="createGroup">创建群组</button>
+        <button bind:tap="getGroupInfo">获取群组信息</button>
+        <button bind:tap="changeGroupInfo">修改群组信息</button>
+        <button bind:tap="removSingleMember">移除群组成员</button>
+        <button bind:tap="delGroup">解散群组</button>
+        <button bind:tap="qiutGroup">退出群组</button>
+        <button bind:tap="undateAnt">上传或修改群公告</button>
+        <button bind:tap="getAnt">修改群公告</button>
+        <button bind:tap="downloadGoupFlie">下载群文件</button>
+</view>
+<!-- 群成员管理 -->
+<view>
+    <button bind:tap="findgroupList">查询群组成员</button>
+    <button bind:tap="setAdmin">将成员设成管理员</button>
+    <button bind:tap="removeAdmin">将管理员撤销</button>
+    <button bind:tap="getGroupAdmin">获取群组所有管理员</button>
+</view>

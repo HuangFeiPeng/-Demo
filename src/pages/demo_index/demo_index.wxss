@@ -21,3 +21,7 @@ int{
   border-radius: 3px;
   border: 2px solid black;
 }
+/* #nextBtn{
+  width: 100px;
+  height: 20px;
+} */
