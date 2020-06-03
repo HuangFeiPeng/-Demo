@@ -142,12 +142,38 @@ Page({
   getAnt: function () {
     WebIM.conn.fetchGroupAnnouncement({
       groupId: '117200113434628',            // 群组id                          
-      success: function (resp) { 
-        console.log('>>>>获取公告成功！',resp);
+      success: function (resp) {
+        console.log('>>>>获取公告成功！', resp);
       },
-      error: function (e) { 
-        console.log(e,'获取失败！');
+      error: function (e) {
+        console.log(e, '获取失败！');
       }
     })
-  }
+  },
+  //获取群文件列表
+  getGoupFlieList: function () {
+    WebIM.conn.fetchGroupSharedFileList(
+      {
+        groupId: '117200113434628', // 群组id                        
+        success: function (resp) { 
+          console.log('群文件获取成功！',resp);
+        },
+        error: function (e) { 
+          console.log('群文件获取失败!',e);
+        },
+      }
+    )
+  },
+  //下载群文件
+  downloadGoupFlie: function(){
+    debugger;
+    let fileId = 'f18284b0-a579-11ea-959f-cd9e213db55f'
+    WebIM.conn.downloadGroupSharedFile({
+      groupId: '117200113434628',
+      fileId: fileId
+    })
+  },
+  /* 群成员管理 */
+  //查询群组成员
+
 })

@@ -12,7 +12,9 @@
         <button bind:tap="qiutGroup">退出群组</button>
         <button bind:tap="undateAnt">上传或修改群公告</button>
         <button bind:tap="getAnt">修改群公告</button>
+        <button bind:tap="getGoupFlieList">获取群文件列表</button>
         <button bind:tap="downloadGoupFlie">下载群文件</button>
+        
 </view>
 <!-- 群成员管理 -->
 <view>

@@ -95,6 +95,7 @@ App({
             console.log('群文件已删除！');
             break;
           case 'uploadFile':
+            console.log(message.from+'上传了群文件');
             // 上传群文件
             break;
           case 'deleteAnnouncement':
