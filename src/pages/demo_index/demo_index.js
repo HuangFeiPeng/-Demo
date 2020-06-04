@@ -1,6 +1,6 @@
 let WebIM = require("../../utils/WebIM");
 WebIM = WebIM.default;
-console.log('demo——index WebIM',WebIM)
+console.log('demo——index WebIM', WebIM)
 // conn = WebIM.conn;
 Page({
 
@@ -10,8 +10,8 @@ Page({
   //存放data
   data: {
     name: "",
-    pad: ""
-
+    pad: "",
+    filename: ""
   },
 
   //登录功能btn
@@ -49,65 +49,65 @@ Page({
   /* 消息部分 */
   //单聊消息
   chatMessage: function () {
-    var id = WebIM.conn.getUniqueId();                 // 生成本地消息id
-    var msg = new WebIM.message('txt', id);      // 创建文本消息
+    var id = WebIM.conn.getUniqueId(); // 生成本地消息id
+    var msg = new WebIM.message('txt', id); // 创建文本消息
     msg.set({
-      msg: 'message content',                  // 消息内容
-      to: '',                          // 接收消息对象（用户id）
+      msg: 'message content', // 消息内容
+      to: '', // 接收消息对象（用户id）
       roomType: false,
       ext: {
         key: '1',
         key2: {
           key3: 'value2'
         }
-      },                                  //扩展消息
+      }, //扩展消息
       success: function () {
         console.log('send private text Success');
-      },                                       // 对成功的相关定义，sdk会将消息id登记到日志进行备份处理
+      }, // 对成功的相关定义，sdk会将消息id登记到日志进行备份处理
       fail: function (e) {
         console.log("Send private text error", e);
-      }                                        // 对失败的相关定义，sdk会将消息id登记到日志进行备份处理
+      } // 对失败的相关定义，sdk会将消息id登记到日志进行备份处理
     });
     WebIM.conn.send(msg.body);
   },
   //群聊消息
   groupMessage: function () {
-    var id = WebIM.conn.getUniqueId();            // 生成本地消息id
+    var id = WebIM.conn.getUniqueId(); // 生成本地消息id
     var msg = new WebIM.message('txt', id); // 创建文本消息
     var option = {
-      msg: '群组消息发送测试！',             // 消息内容
-      to: '115310648688641',                     // 接收消息对象(群组id)
-      roomType: false,                    // 群聊类型，true时为聊天室，false时为群组
-      ext: {},                            // 扩展消息
+      msg: '群组消息发送测试！', // 消息内容
+      to: '115310648688641', // 接收消息对象(群组id)
+      roomType: false, // 群聊类型，true时为聊天室，false时为群组
+      ext: {}, // 扩展消息
       success: function () {
         console.log('群聊消息发送成功！');
-      },                                  // 对成功的相关定义，sdk会将消息id登记到日志进行备份处理
+      }, // 对成功的相关定义，sdk会将消息id登记到日志进行备份处理
       fail: function (e) {
         console.log('群聊消息发送失败！', e);
-      }                                   // 对失败的相关定义，sdk会将消息id登记到日志进行备份处理
+      } // 对失败的相关定义，sdk会将消息id登记到日志进行备份处理
     };
     msg.set(option);
-    msg.setGroup('groupchat');              // 群聊类型
+    msg.setGroup('groupchat'); // 群聊类型
     WebIM.conn.send(msg.body);
   },
   //聊天室消息
   roomMessage: function () {
-    var id = WebIM.conn.getUniqueId();         // 生成本地消息id
+    var id = WebIM.conn.getUniqueId(); // 生成本地消息id
     var msg = new WebIM.message('txt', id); // 创建文本消息
     var option = {
-      msg: '聊天室消息发送测试',          // 消息内容
-      to: '117006506459137',               // 接收消息对象(聊天室id)
-      roomType: true,                  // 群聊类型，true时为聊天室，false时为群组
-      ext: {},                         // 扩展消息
+      msg: '聊天室消息发送测试', // 消息内容
+      to: '117006506459137', // 接收消息对象(聊天室id)
+      roomType: true, // 群聊类型，true时为聊天室，false时为群组
+      ext: {}, // 扩展消息
       success: function () {
         console.log('聊天室消息发送成功！');
-      },                               // 对成功的相关定义，sdk会将消息id登记到日志进行备份处理
+      }, // 对成功的相关定义，sdk会将消息id登记到日志进行备份处理
       fail: function (e) {
         console.log('聊天室消息发送失败！', e);
-      }                                // 对失败的相关定义，sdk会将消息id登记到日志进行备份处理
+      } // 对失败的相关定义，sdk会将消息id登记到日志进行备份处理
     };
     msg.set(option);
-    msg.setGroup('groupchat');           // 群聊类型
+    msg.setGroup('groupchat'); // 群聊类型
     WebIM.conn.send(msg.body);
   },
   //发送url消息
@@ -185,6 +185,69 @@ Page({
     });
     WebIM.conn.send(msg.body);
   },
+
+  sendFileMsg: function () {
+    let that = this;
+    let appUrl = WebIM.config.apiURL;
+    let appKey = WebIM.config.appkey.split("#");
+    // let token = WebIM.conn.context.accessToken;
+    //1）调用微信官方提供的API上传附件,chooseMessageFile获取文件的地址。
+    wx.chooseMessageFile({
+      count: 10, //最大可选择的文件数量
+      type: "file", //文件类型
+      success(res) {
+        console.log('》》》》》通过微信上传的返回值', res);
+        let filename = res.tempFiles[0].name; //获取文件名
+        let filesize = res.tempFiles[0].size; //获取文件size
+        that.setData({
+          filename: filename
+        }); //纯属闲的html渲染出来文件名；
+        //2）调用微信官方提供的API上传文件功能。
+        wx.uploadFile({
+          url: `${appUrl}/${appKey[0]}/${appKey[1]}/chatfiles`, //环信服务器地址
+          filePath: res.tempFiles[0].path, //上传资源的本地地址
+          name: 'file', //文件名
+          success(res) {
+            const data = JSON.parse(res.data);
+            console.log(data);
+            let id = WebIM.conn.getUniqueId(); // 生成本地消息id
+            let msg = new WebIM.message('file', id); // 创建文件消息
+            let file = {
+              type: 'file',
+              size: filesize,
+              url: `${data.url}/${data.entities[0].uuid}`,
+              filetype: data.entities[0].type,
+              filename: filename
+            } //将文件转换为二进制文件
+            var allowType = { //设置支持的消息类型
+              'jpg': true,
+              'gif': true,
+              'png': true,
+              'bmp': true,
+              'zip': true,
+              'txt': true,
+              'pdf': true
+            };
+            // if (file.filetype.toLowerCase() in allowType) {
+              msg.set({
+                apiUrl: WebIM.config.apiURL,
+                body: file,
+                from: 'hfp',
+                to: '13031081380',
+                roomType: false,
+                success: function (res) { // 消息发送成功
+                  console.log('^_^附件发送成功！', res);
+                },
+              })
+              console.log(msg);
+              WebIM.conn.send(msg.body);
+            // }
+          }
+        })
+      }
+    })
+    console.log(`${appUrl}/${appKey[0]}/${appKey[1]}/chatfiles`);
+  },
   //获取历史消息
   getHiatoryMsg: function () {
     var options = {
@@ -260,10 +323,10 @@ Page({
       }
     });
   },
-  getBlackList: function(){
+  getBlackList: function () {
     WebIM.conn.getBlacklist();
   },
-  nextpage: function(){
+  nextpage: function () {
     wx.navigateTo({
       url: '../demo_index2/demo_index2'
     })
