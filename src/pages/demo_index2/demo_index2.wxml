@@ -1,25 +1,61 @@
 <view class="title-box">
     <text class="title">环信小程序Demo</text>
 </view>
+<text>群组基本功能</text>
 <view>
-        <button bind:tap="getGroupList">获取当前用户加入的群组</button>
-        <button bind:tap="listGroups">分页获取公开群</button>
-        <button bind:tap="createGroup">创建群组</button>
-        <button bind:tap="getGroupInfo">获取群组信息</button>
-        <button bind:tap="changeGroupInfo">修改群组信息</button>
-        <button bind:tap="removSingleMember">移除群组成员</button>
-        <button bind:tap="delGroup">解散群组</button>
-        <button bind:tap="qiutGroup">退出群组</button>
-        <button bind:tap="undateAnt">上传或修改群公告</button>
-        <button bind:tap="getAnt">修改群公告</button>
-        <button bind:tap="getGoupFlieList">获取群文件列表</button>
-        <button bind:tap="downloadGoupFlie">下载群文件</button>
-        
+    <button bind:tap="getGroupList">获取当前用户加入的群组</button>
+    <button bind:tap="listGroups">分页获取公开群</button>
+    <button bind:tap="createGroup">创建群组</button>
+    <button bind:tap="getGroupInfo">获取群组信息</button>
+    <button bind:tap="changeGroupInfo">修改群组信息</button>
+    <button bind:tap="removSingleMember">移除群组成员</button>
+    <button bind:tap="delGroup">解散群组</button>
+    <button bind:tap="qiutGroup">退出群组</button>
+    <button bind:tap="undateAnt">上传或修改群公告</button>
+    <button bind:tap="getAnt">修改群公告</button>
+    <button bind:tap="getGoupFlieList">获取群文件列表</button>
+    <button bind:tap="downloadGoupFlie">下载群文件</button>
+    <button bind:tap="delGoupFlie">删除群文件</button>
 </view>
 <!-- 群成员管理 -->
+<text>群成员管理</text>
 <view>
     <button bind:tap="findgroupList">查询群组成员</button>
     <button bind:tap="setAdmin">将成员设成管理员</button>
     <button bind:tap="removeAdmin">将管理员撤销</button>
     <button bind:tap="getGroupAdmin">获取群组所有管理员</button>
+</view>
+<!-- 加群处理 -->
+<text>加群处理</text>
+<view>
+    <button bind:tap="addFreiendGroup">将好友加入群组</button>
+    <button bind:tap="joinGroup">向群组发出入群申请</button>
+    <button bind:tap="agreeJoinGroup">同意用户加入群</button>
+    <button bind:tap="rejectJoinGroup">拒绝用户入群</button>
+</view>
+<!-- 禁言管理 -->
+<text>禁言管理</text>
+<view>
+    <button bind:tap="usermute">将成员禁言</button>
+    <button bind:tap="removeMute">将成员解除禁言</button>
+    <button bind:tap="getMuted">获取群组下禁言成员</button>
+    <button bind:tap="allGroupMuted">群组中禁言所有成员</button>
+    <button bind:tap="endAllgroupMuted">群组中解除禁言所有成员</button>
+</view>
+<!-- 白名单 -->
+<text>白名单</text>
+<view>
+    <button bind:tap="addUserwhiteList">添加用户到白名单</button>
+    <button bind:tap="rmUserwhiteList">将用户从白名单移除</button>
+    <button bind:tap="getUserwhiteList">从服务器获取白名单列表</button>
+    <button bind:tap="isGroupWhiteUser">查询群成员是否是白名单用户</button>
+</view>
+<!-- 黑名单 -->
+<text>黑名单</text>
+<view>
+    <button bind:tap="groupBlockSingle">将成员单个加入黑名单</button>
+    <button bind:tap="removeGroupBlockSingle">将成员单个移出黑名单</button>
+    <button bind:tap="groupBlockMulti">将成员批量加入黑名单</button>
+    <button bind:tap="removeGroupBlockMulti">将成员批量移出黑名单</button>
+    <button bind:tap="getGroupBlacklistNew">获取群组黑名单列表</button>
 </view>

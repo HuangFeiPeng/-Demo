@@ -122,23 +122,28 @@ App({
             break;
           case 'direct_joined':
             // 直接被拉进群
+            console.log(message.from+'直接被拉近了群');
             break;
           case 'leaveGroup':
+            console.log(message.from+'退出了群组');
             // 退出群
             break;
           case 'memberJoinPublicGroupSuccess':
+            console.log(message.from+'加入了公开群组成功！');
             // 加入公开群成功
             break;
           case 'removedFromGroup':
             // 从群组移除
             break;
           case 'invite_decline':
+            console.log('加群申请拒绝');
             // 拒绝加群邀请
             break;
           case 'invite_accept':
             // 接收加群邀请
             break;
           case 'invite':
+            console.log('发起可加群邀请！');
             // 发加群邀请
             break;
           case 'joinPublicGroupDeclined':

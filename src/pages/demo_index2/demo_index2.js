@@ -55,11 +55,11 @@ Page({
   createGroup: function () {
     WebIM.conn.createGroupNew({
       data: {
-        groupname: 'hfp的小程序群创建测试2',                    // 群组名
+        groupname: 'hfp的小程序群创建测试公开群3',                    // 群组名
         desc: 'hfp群组创建测试',                          // 群组描述
-        members: ["13031081380", "wx1990", "pfh", "omg2"],            // 用户名组成的数组
-        public: true,                         // pub等于true时，创建为公开群
-        approval: false,                  // approval为true，加群需审批，为false时加群无需审批
+        members: ["13031081380"],            // 用户名组成的数组
+        public: false,                         // pub等于true时，创建为公开群
+        approval: true,                  // approval为true，加群需审批，为false时加群无需审批
         allowinvites: true         // 是否允许群成员邀请别人加入此群
       },
       success: function (respData) {
@@ -155,25 +155,292 @@ Page({
     WebIM.conn.fetchGroupSharedFileList(
       {
         groupId: '117200113434628', // 群组id                        
-        success: function (resp) { 
-          console.log('群文件获取成功！',resp);
+        success: function (resp) {
+          console.log('群文件获取成功！', resp);
         },
-        error: function (e) { 
-          console.log('群文件获取失败!',e);
+        error: function (e) {
+          console.log('群文件获取失败!', e);
         },
       }
     )
   },
   //下载群文件
-  downloadGoupFlie: function(){
-    debugger;
-    let fileId = 'f18284b0-a579-11ea-959f-cd9e213db55f'
+  downloadGoupFlie: function () {
+    // debugger
+    let fileId = 'fc952380-a623-11ea-ab69-55e856852236'
     WebIM.conn.downloadGroupSharedFile({
       groupId: '117200113434628',
       fileId: fileId
     })
   },
+  //删除群文件
+  delGoupFlie: function () {
+    WebIM.conn.deleteGroupSharedFile({
+      groupId: '117200113434628',
+      fileId: 'fc952380-a623-11ea-ab69-55e856852236',
+      success: function (res) {
+        console.log('》》》》群文件删除成功！', res);
+      },
+      error: function (e) {
+        console.log('>>>>>>删除失败！', e);
+      }
+    });
+  },
   /* 群成员管理 */
   //查询群组成员
+  findgroupList: function () {
+    WebIM.conn.listGroupMember({
+      pageNum: 1,                                               // 页码
+      pageSize: 5,                                             // 预期每页获取的记录数
+      groupId: '117200113434628',
+      success: function (resp) { console.log("查询群组成员成功！: ", resp.data) },
+      error: function (e) {
+        console.log('查询失败！', e);
+      }
+    });
+  },
+  //将成员设置成管理员
+  setAdmin: function () {
+    WebIM.conn.setAdmin({
+      groupId: "117200113434628",            // 群组id
+      username: "13031081380",              // 要设置的用户名
+      success: function (resp) {
+        console.log('设置成功~', resp.data);
+      },
+      error: function (e) {
+        console.log('设置失败~', e);
+      }
+    })
+  },
+  //将指定管理员撤销
+  removeAdmin: function () {
+    WebIM.conn.removeAdmin({
+      groupId: "117200113434628",            // 群组id
+      username: "13031081380",              // 要设置的用户名
+      success: function (resp) {
+        console.log('撤销成功~', resp.data);
+      },
+      error: function (e) {
+        console.log('撤销失败~', e);
+      }
+    })
+  },
+  //获取群组内所有管理员
+  getGroupAdmin: function () {
+    WebIM.conn.getGroupAdmin({
+      groupId: "117200113434628",
+      success: function (resp) {
+        console.log('获取All管理员成功~', resp.data);
+      },
+      error: function (e) {
+        console.log('获取失败~', e);
+      }
+    })
+  },
+  /* 加群处理 */
+  //将好友加入群组
+  addFreiendGroup: function () {
+    WebIM.conn.inviteToGroup({
+      users: ['pfh','hfp3'],
+      groupId: "117200113434628"
+    });
+  },
+  //向群组发出入群申请
+  joinGroup: function () {
+    WebIM.conn.joinGroup({
+      groupId: "117200113434628",
+      success: function (resp) {
+        console.log("Response: ", resp);
+      },
+      error: function (e) {
+        console.log(e);
+        if (e.type == 17) {
+          console.log("您已经在这个群组里了");
+        }
+      }
+    })
+  },
 
+  /* 禁言管理 */
+  //将成员禁言
+  usermute: function () {
+    WebIM.conn.mute({
+      username: 'hfp3',
+      muteDuration: 50000,
+      groupId: '117200113434628',
+      success: function (resp) {
+        console.log('将指定群成员禁言成功！', resp);
+      },
+      error: function (e) {
+        console.log('禁言失败', e);
+      }
+    })
+  },
+  //将成员解除禁言
+  removeMute: function () {
+    WebIM.conn.removeMute({
+      groupId: "117200113434628",                  // 群组ID
+      username: "hfp3",                    // 成员用户名
+      success: function (resp) {
+        console.log('将指定群成员解除禁言成功', resp);
+      },
+      error: function (e) {
+        console.log('解除禁言失败~', e);
+      }
+    })
+  },
+  //获取群组下禁言成员
+  getMuted: function () {
+    WebIM.conn.getMuted({
+      groupId: "117200113434628",                // 群组ID
+      success: function (resp) {
+        console.log('获取成功！', resp.data);
+      },
+      error: function (e) {
+        console.log('获取失败~', e);
+      }
+    })
+  },
+  //群组中禁言所有成员
+  allGroupMuted: function () {
+    WebIM.conn.disableSendGroupMsg({
+      groupId: '117200113434628',
+      success: function (resp) {
+        console.log('禁言全体群组成员成功', resp);
+      },
+      error: function (e) {
+        console.log('禁言全体成员失败~', e);
+      }
+    })
+  },
+  //群组中解除禁言所有成员
+  endAllgroupMuted: function () {
+    WebIM.conn.enableSendGroupMsg({
+      groupId: '117200113434628',
+      success: function (resp) {
+        console.log('解除禁言全体群组成员成功', resp);
+      },
+      error: function (e) {
+        console.log('解除禁言全体成员失败~', e);
+      }
+    })
+  },
+  /* 白名单管理 */
+  //添加用户到白名单
+  addUserwhiteList: function () {
+    WebIM.conn.addUsersToGroupWhitelist({
+      groupId: "117200113434628", //群组id
+      users: ["13031081380"], //成员id列表
+      success: function (resp) {
+        console.log('添加指定用户至白名单成功！', resp);
+      },
+      error: function (e) {
+        console.log('添加至白名单失败~', e);
+      }
+    });
+  },
+  //将用户从白名单移除
+  rmUserwhiteList: function () {
+    WebIM.conn.rmUsersFromGroupWhitelist({
+      groupId: "117200113434628", //群组id
+      userName: ["13031081380"], //要移除的成员
+      success: function (resp) {
+        console.log('移除指定用户至白名单成功！', resp);
+      },
+      error: function (e) {
+        console.log('添加至白名单失败~', e);
+      }
+    })
+  },
+  //从服务器获取白名单列表
+  getUserwhiteList: function () {
+    WebIM.conn.getGroupWhitelist({
+      groupId: "117200113434628", //群组id
+      success: function (resp) {
+        console.log('>>>从服务器提取白名单列表成功', resp.data);
+      },
+      error: function (e) {
+        console.log('获取失败！', e);
+      }
+    })
+  },
+  //查询群成员是否是白名单用户
+  isGroupWhiteUser: function () {
+    WebIM.conn.isGroupWhiteUser({
+      groupId: "117200113434628", //群组id
+      userName: "hfp", //要查询的成员
+      success: function (resp) {
+        console.log('>>>查询成功', resp.data.white);
+      },
+      error: function (e) {
+        console.log('查询失败~', e);
+      }
+    })
+  },
+  /* 黑名单 */
+  //将成员单个加入黑名单
+  groupBlockSingle: function () {
+    WebIM.conn.groupBlockSingle({
+      groupId: '117200113434628',                     // 群组ID
+      username: 'hfp3',                         // 将要被加入黑名单的用户名
+      success: function (resp) {
+        console.log("加入成功: ", resp.data);
+      },
+      error: function (e) {
+        console.log('加入失败', e);
+      }
+    })
+  },
+  //将成员单个移出加入黑名单
+  removeGroupBlockSingle: function () {
+    WebIM.conn.removeGroupBlockSingle({
+      groupId: "117200113434628",                     // 群组ID              
+      username: "pfh",                             // 需要移除的用户名
+      success: function (resp) {
+        console.log("单个移出黑名单成功！", resp.data);
+      },
+      error: function (e) {
+        console.log('移出失败~', e);
+      }
+    })
+  },
+  //将成员批量加入黑名单
+  groupBlockMulti: function () {
+    WebIM.conn.groupBlockMulti({
+      groupId: '117200113434628',                         // 群组ID
+      usernames: ['hfp3', 'pfh'],          // 将要被加入黑名单的用户名数组
+      success: function (resp) {
+        console.log("批量群组成员拉黑成功~: ", resp.data);
+      },
+      error: function (e) {
+        console.log('批量拉黑失败~', e);
+      }
+    })
+  },
+  //将成员批量移出黑名单
+  removeGroupBlockMulti: function () {
+    debugger;
+    WebIM.conn.removeGroupBlockMulti({
+      groupId: '117200113434628',                         // 群组ID
+      usernames: ["hfp3","pfh"],          // 将要被加入黑名单的用户名数组
+      success: function (resp) {
+        console.log("批量群组成员移除黑名单成功~: ", resp.data);
+      },
+      error: function (e) {
+        console.log('批量移除黑名单失败~', e);
+      }
+    })
+  },
+  //获取群组黑名单列表
+  getGroupBlacklistNew: function () {
+    WebIM.conn.getGroupBlacklistNew({
+      groupId: '117200113434628',
+      success: function (list) {
+        console.log('Get group black list: ', list);
+      },
+      error: function (e) {
+        console.log('Get group black list 失败.',e);
+      }
+    })
+  }
 })

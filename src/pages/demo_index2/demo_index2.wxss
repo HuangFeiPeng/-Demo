@@ -1,24 +1,35 @@
 /* src/pages/demo_index2/demo_index2.wxss */
-.title-box{
-    height: 80px;
-    padding-left: 20px;
-  }
-  .title{
-    font-size: 20px;
-    color: rgb(078, 110, 242);
-    font-weight: bold;
-  }
-  /* .login{
+
+.title-box {
+  height: 80px;
+  padding-left: 20px;
+}
+
+.title {
+  font-size: 20px;
+  color: rgb(078, 110, 242);
+  font-weight: bold;
+}
+
+/* .login{
     height: 60px;
     width: 100px;
   } */
-  int{
-    height: 60px;
-  }
-  .int-box{
-    margin: 5px auto;
-    width: 80%;
-    height: 50px;
-    border-radius: 3px;
-    border: 2px solid black;
-  }
+
+int {
+  height: 60px;
+}
+
+.int-box {
+  margin: 5px auto;
+  width: 80%;
+  height: 50px;
+  border-radius: 3px;
+  border: 2px solid black;
+}
+
+text {
+  margin-left: 10px;
+  color: rgb(078, 110, 242);
+  font-weight: bold;
+}

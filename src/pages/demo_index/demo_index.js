@@ -53,7 +53,7 @@ Page({
     var msg = new WebIM.message('txt', id);      // 创建文本消息
     msg.set({
       msg: 'message content',                  // 消息内容
-      to: 'hfp',                          // 接收消息对象（用户id）
+      to: '',                          // 接收消息对象（用户id）
       roomType: false,
       ext: {
         key: '1',
