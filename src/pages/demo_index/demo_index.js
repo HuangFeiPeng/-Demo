@@ -197,8 +197,12 @@ Page({
       type: "file", //文件类型
       success(res) {
         console.log('》》》》》通过微信上传的返回值', res);
-        let filename = res.tempFiles[0].name; //获取文件名
+        var filename = res.tempFiles[0].name; //获取文件名
+        var index = filename.lastIndexOf(".");
+        var filetype = filename.substr(index+1);
+        console.log(filetype);
         let filesize = res.tempFiles[0].size; //获取文件size
+        
         that.setData({
           filename: filename
         }); //纯属闲的html渲染出来文件名；
@@ -216,9 +220,10 @@ Page({
               type: 'file',
               size: filesize,
               url: `${data.url}/${data.entities[0].uuid}`,
-              filetype: data.entities[0].type,
+              filetype: filetype,
               filename: filename
             } //将文件转换为二进制文件
+            // debugger;
             var allowType = { //设置支持的消息类型
               'jpg': true,
               'gif': true,
@@ -228,7 +233,7 @@ Page({
               'txt': true,
               'pdf': true
             };
-            // if (file.filetype.toLowerCase() in allowType) {
+            if (file.filetype.toLowerCase() in allowType) {
               msg.set({
                 apiUrl: WebIM.config.apiURL,
                 body: file,
@@ -241,7 +246,7 @@ Page({
               })
               console.log(msg);
               WebIM.conn.send(msg.body);
-            // }
+            }
           }
         })
       }
