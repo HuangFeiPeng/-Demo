@@ -199,10 +199,9 @@ Page({
         console.log('》》》》》通过微信上传的返回值', res);
         var filename = res.tempFiles[0].name; //获取文件名
         var index = filename.lastIndexOf(".");
-        var filetype = filename.substr(index+1);
+        var filetype = filename.substr(index+1);//获取文件类型(文件后缀)；
         console.log(filetype);
         let filesize = res.tempFiles[0].size; //获取文件size
-        
         that.setData({
           filename: filename
         }); //纯属闲的html渲染出来文件名；
@@ -331,9 +330,14 @@ Page({
   getBlackList: function () {
     WebIM.conn.getBlacklist();
   },
-  nextpage: function () {
+  nextpageGroup: function () {
     wx.navigateTo({
       url: '../demo_index2/demo_index2'
+    })
+  },
+  nextpageChatroom:function(){
+    wx.navigateTo({
+      url: '../demo_index3/demo_index3'
     })
   }
 })

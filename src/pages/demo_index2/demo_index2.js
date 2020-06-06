@@ -241,7 +241,7 @@ Page({
   //将好友加入群组
   addFreiendGroup: function () {
     WebIM.conn.inviteToGroup({
-      users: ['pfh','hfp3'],
+      users: ['pfh', 'hfp3'],
       groupId: "117200113434628"
     });
   },
@@ -408,7 +408,7 @@ Page({
   groupBlockMulti: function () {
     WebIM.conn.groupBlockMulti({
       groupId: '117200113434628',                         // 群组ID
-      usernames: ['hfp3', 'pfh'],          // 将要被加入黑名单的用户名数组
+      usernames: ['hfp','pfh'],          // 将要被加入黑名单的用户名数组
       success: function (resp) {
         console.log("批量群组成员拉黑成功~: ", resp.data);
       },
@@ -418,28 +418,29 @@ Page({
     })
   },
   //将成员批量移出黑名单
-  removeGroupBlockMulti: function () {
-    debugger;
-    WebIM.conn.removeGroupBlockMulti({
-      groupId: '117200113434628',                         // 群组ID
-      usernames: ["hfp3","pfh"],          // 将要被加入黑名单的用户名数组
-      success: function (resp) {
-        console.log("批量群组成员移除黑名单成功~: ", resp.data);
-      },
-      error: function (e) {
-        console.log('批量移除黑名单失败~', e);
-      }
-    })
-  },
+  // removeGroupBlockMulti: function () {
+  //   //, ,
+  //   var options = {
+  //     groupId: '117200113434628',                         // 群组ID
+  //     usernames: ['hfp','pfh'],          // 将要被加入黑名单的用户名数组
+  //     success: function (resp) {
+  //       console.log("批量群组成员移除黑名单成功~: ", resp.data);
+  //     },
+  //     error: function (e) {
+  //       console.log('批量移除黑名单失败~', e);
+  //     }
+  //   }
+  //   WebIM.conn.removeGroupBlockMulti(options)
+  // },
   //获取群组黑名单列表
   getGroupBlacklistNew: function () {
     WebIM.conn.getGroupBlacklistNew({
       groupId: '117200113434628',
       success: function (list) {
-        console.log('Get group black list: ', list);
+        console.log('Get group black list: ', list.data);
       },
       error: function (e) {
-        console.log('Get group black list 失败.',e);
+        console.log('Get group black list 失败.', e);
       }
     })
   }

@@ -1,0 +1,11 @@
+<!--src/pages/demo_index3/demo_index3.wxml-->
+<view class="title-box">
+    <text class="title">环信小程序Demo</text>
+</view>
+<text>聊天室管理</text>
+<view>
+    <button bind:tap="listRooms">获取聊天室的列表</button>
+    <button bind:tap="joinRoom">加入聊天室的</button>
+    <button bind:tap="quitRoom">退出聊天室</button>
+    <!-- <button bind:tap="">退出聊天室</button> -->
+</view>

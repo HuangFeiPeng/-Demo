@@ -1,10 +1,7 @@
 <view>
     <view class="title-box">
-        <text class="title">
-            环信小程序Demo
-        </text>
+        <text class="title">环信小程序Demo</text>
     </view>
-    
     <!-- <view class="int">
         <input class="int-box" id="userId" type="text" bindinput="bindusername" placeholder="用户ID..." />
         <input class="int-box" id="password" type="text" bindinput="bindpassword" placeholder="用户密码..." />
@@ -14,14 +11,13 @@
         <button bind:tap="register">注册</button>
         <button bind:tap="quit">退出</button>
     </view>
-    <view >
+    <view>
         <text>请登录后再跳转</text>
-         <button id="nextBtn" bind:tap="nextpage">跳转至群组页面</button>
+        <button bind:tap="nextpageGroup">跳转至群组页面</button>
+        <button bind:tap="nextpageChatroom">跳转至聊天室页面</button>
     </view>
     <view class="title-box">
-        <text class="title">
-            发送消息部分
-        </text>
+        <text class="title">发送消息部分</text>
         <text>文件名:{{filename}}</text>
     </view>
     <view>
@@ -33,23 +29,20 @@
         <button bind:tap="customMessage">发送自定义消息</button>
         <button bind:tap="sendFileMsg">发送附件消息</button>
         <button bind:tap="getHiatoryMsg">获取历史消息</button>
-        
     </view>
     <view class="title-box">
-        <text class="title">
-            好友管理
-        </text>
+        <text class="title">好友管理</text>
     </view>
     <view>
         <button bind:tap="findFriendList">查询好友列表</button>
         <button bind:tap="addFriend">添加好友</button>
         <button bind:tap="delFriend">删除好友</button>
-       <button bind:tap="joinBlack">将好友加入黑名单</button>
-       <button bind:tap="quitBlack">将好友移出黑名单</button>
-       <button bind:tap="getBlackList">获取黑名单列表</button>
+        <button bind:tap="joinBlack">将好友加入黑名单</button>
+        <button bind:tap="quitBlack">将好友移出黑名单</button>
+        <button bind:tap="getBlackList">获取黑名单列表</button>
     </view>
-    <view >
+    <view>
         <text>请登录后再跳转</text>
-         <button id="nextBtn" bind:tap="nextpage">跳转至群组页面</button>
+        <button bind:tap="nextpageGroup">跳转至群组页面</button>
     </view>
 </view>

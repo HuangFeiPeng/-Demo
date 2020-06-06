@@ -20,7 +20,8 @@ App({
     WebIM.conn.listen({
       onOpened: function (message) {
         let Nowdate = new Date().toLocaleString();
-        console.log('小程序Demo' + Nowdate + '登录成功！');
+        // console.log("%C [小程序Demo登录成功！]", "color: green");
+        console.log("%c [opened小程序Demo登录成功！] 连接已成功建立", "color: green");
       }, //连接成功回调 
       onClosed: function (message) {
         console.log('链接已关闭！')
