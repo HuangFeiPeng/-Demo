@@ -216,12 +216,12 @@ Page({
             let id = WebIM.conn.getUniqueId(); // 生成本地消息id
             let msg = new WebIM.message('file', id); // 创建文件消息
             let file = {
-              type: 'file',
+              data: 'file',
               size: filesize,
-              url: `${data.url}/${data.entities[0].uuid}`,
+              url: `${data.uri}/${data.entities[0].uuid}`,
               filetype: filetype,
               filename: filename
-            } //将文件转换为二进制文件
+            } //
             // debugger;
             var allowType = { //设置支持的消息类型
               'jpg': true,

@@ -5,7 +5,36 @@
 <text>聊天室管理</text>
 <view>
     <button bind:tap="listRooms">获取聊天室的列表</button>
-    <button bind:tap="joinRoom">加入聊天室的</button>
+    <button bind:tap="joinRoom">加入聊天室</button>
     <button bind:tap="quitRoom">退出聊天室</button>
-    <!-- <button bind:tap="">退出聊天室</button> -->
 </view>
+<text>聊天室公告</text>
+<view>
+    <button bind:tap="getChatRoomAct">获取聊天室公告</button>
+    <button bind:tap="updateChatRoomAct">上传/修改聊天室公告</button>
+
+</view>
+<text>聊天室禁言</text> 
+<view>
+    <button bind:tap="muteChatRoomMer">聊天室成员禁言</button>
+    <button bind:tap="removeMuteChatRoomMer">聊天室成员解除禁言</button>
+    <button bind:tap="getMuteChatRoomMer">获取聊天室所有禁言成员</button>
+    <button bind:tap="switchMuteChatRoomMer">开启或关闭全员禁言</button>
+</view>
+<text>聊天室白名单管理</text> 
+<view>
+    <button bind:tap="addUsersWhiteList">添加用户到白名单</button>
+    <button bind:tap="removeUsersWhiteList">用户从白名单移除白名单</button>
+    <button bind:tap="getUsersWhiteList">获取白名单成员列表</button>
+    <button bind:tap="isChatRoomWhiteUser">查询是否为白名单成员</button>
+</view>
+<text>聊天室黑名单管理</text> 
+<view>
+    <button bind:tap="getUsersBlackList">获取聊天室黑名单</button>
+    <button bind:tap="addUsersBlackList">添加单个用户加入黑名单</button>
+    <button bind:tap="removeUserssBlackList">单个用户移除黑名单</button>
+    <button bind:tap="chatRoomBlockMulti">批量将成员加入黑名单</button>
+    <button bind:tap="removeChatRoomBlockMulti">批量将成员移除黑名单</button>
+</view>
+
+

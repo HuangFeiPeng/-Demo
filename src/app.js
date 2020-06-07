@@ -36,13 +36,13 @@ App({
         });
         WebIM.conn.send(msg.body);
       }, //收到文本消息
-      onEmojiMessage: function (message) { }, //收到表情消息
+      onEmojiMessage: function (message) {}, //收到表情消息
       onPictureMessage: function (message) {
         console.log("Location of Picture is ", message.url);
       }, //收到图片消息
-      onCmdMessage: function (message) { }, //收到命令消息
-      onAudioMessage: function (message) { }, //收到音频消息
-      onLocationMessage: function (message) { }, //收到位置消息
+      onCmdMessage: function (message) {}, //收到命令消息
+      onAudioMessage: function (message) {}, //收到音频消息
+      onLocationMessage: function (message) {}, //收到位置消息
       onFileMessage: function (message) {
         console.log('>>>>收到文件消息', message);
       }, //收到文件消息
@@ -96,7 +96,7 @@ App({
             console.log('群文件已删除！');
             break;
           case 'uploadFile':
-            console.log(message.from+'上传了群文件');
+            console.log(message.from + '上传了群文件');
             // 上传群文件
             break;
           case 'deleteAnnouncement':
@@ -123,14 +123,14 @@ App({
             break;
           case 'direct_joined':
             // 直接被拉进群
-            console.log(message.from+'直接被拉近了群');
+            console.log(message.from + '直接被拉近了群');
             break;
           case 'leaveGroup':
-            console.log(message.from+'退出了群组');
+            console.log(message.from + '退出了群组');
             // 退出群
             break;
           case 'memberJoinPublicGroupSuccess':
-            console.log(message.from+'加入了公开群组成功！');
+            console.log(message.from + '加入了公开群组成功！');
             // 加入公开群成功
             break;
           case 'removedFromGroup':
@@ -166,15 +166,72 @@ App({
             // 解散群
             console.log('》》》》群组解散！');
             break;
+          case 'rmChatRoomMute':
+            // 解除聊天室一键禁言
+            break;
+          case 'muteChatRoom':
+            // 聊天室一键禁言
+            break;
+          case 'rmUserFromChatRoomWhiteList':
+            // 删除聊天室白名单成员
+            break;
+          case 'addUserToChatRoomWhiteList':
+            // 增加聊天室白名单成员
+            break;
+          case 'deleteFile':
+            // 删除聊天室文件
+            break;
+          case 'uploadFile':
+            // 上传聊天室文件
+            break;
+          case 'deleteAnnouncement':
+            // 删除聊天室公告
+            break;
+          case 'updateAnnouncement':
+            console.log('群公告被更新！');
+            // 更新聊天室公告
+            break;
+          case 'removeMute':
+            console.log('禁言解除！');
+            // 解除禁言
+            break;
+          case 'addMute':
+            console.log('禁言成功！');
+            // 禁言
+            break;
+          case 'removeAdmin':
+            // 移除管理员
+            break;
+          case 'addAdmin':
+            console.log('管理员禁言～');
+            // 添加管理员
+            break;
+          case 'changeOwner':
+            // 转让聊天室
+            break;
+          case 'leaveChatRoom':
+            console.log('有人退出聊天室');
+            // 退出聊天室
+            break;
+          case 'memberJoinChatRoomSuccess':
+            console.log('有人加入聊天室');
+            // 加入聊天室
+            break;
+          case 'leave':
+            // 退出群
+            break;
+          case 'join':
+            // 加入群
+            break;
           default:
             break;
         }
 
       }, //处理“广播”或“发布-订阅”消息，如联系人订阅请求、处理群组、聊天室被踢解散等消息
-      onRoster: function (message) { }, //处理好友申请
-      onInviteMessage: function (message) { }, //处理群组邀请
-      onOnline: function () { }, //本机网络连接成功
-      onOffline: function () { }, //本机网络掉线
+      onRoster: function (message) {}, //处理好友申请
+      onInviteMessage: function (message) {}, //处理群组邀请
+      onOnline: function () {}, //本机网络连接成功
+      onOffline: function () {}, //本机网络掉线
       onError: function (message) {
         console.warn('错误回调》》》', message);
       }, //失败回调
@@ -182,16 +239,16 @@ App({
         // 查询黑名单，将好友拉黑，将好友从黑名单移除都会回调这个函数，list则是黑名单现有的所有好友信息
         console.log('》》》监听到黑名单~', list);
       },
-      onRecallMessage: function (message) { }, //收到撤回消息回调
+      onRecallMessage: function (message) {}, //收到撤回消息回调
       onReceivedMessage: function (message) {
         console.log()
       }, //收到消息送达服务器回执
-      onDeliveredMessage: function (message) { }, //收到消息送达客户端回执
+      onDeliveredMessage: function (message) {}, //收到消息送达客户端回执
       onReadMessage: function (message) {
         console.log('>>>>>收到已读消息回执！', message)
       }, //收到消息已读回执
-      onCreateGroup: function (message) { }, //创建群组成功回执（需调用createGroupNew）
-      onMutedMessage: function (message) { } //如果用户在A群组被禁言，在A群发消息会走这个回调并且消息不会传递给群其它成员
+      onCreateGroup: function (message) {}, //创建群组成功回执（需调用createGroupNew）
+      onMutedMessage: function (message) {} //如果用户在A群组被禁言，在A群发消息会走这个回调并且消息不会传递给群其它成员
     });
 
     // 登录
