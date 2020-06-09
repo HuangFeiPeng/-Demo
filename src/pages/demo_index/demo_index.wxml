@@ -15,6 +15,7 @@
         <text>请登录后再跳转</text>
         <button bind:tap="nextpageGroup">跳转至群组页面</button>
         <button bind:tap="nextpageChatroom">跳转至聊天室页面</button>
+        <button bind:tap="nextpageEmedia">跳转至多人会议页面</button>
     </view>
     <view class="title-box">
         <text class="title">发送消息部分</text>
@@ -40,9 +41,5 @@
         <button bind:tap="joinBlack">将好友加入黑名单</button>
         <button bind:tap="quitBlack">将好友移出黑名单</button>
         <button bind:tap="getBlackList">获取黑名单列表</button>
-    </view>
-    <view>
-        <text>请登录后再跳转</text>
-        <button bind:tap="nextpageGroup">跳转至群组页面</button>
     </view>
 </view>

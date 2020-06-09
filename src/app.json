@@ -3,7 +3,8 @@
     "pages/demo_index/demo_index",
     "pages/index/index",
     "pages/demo_index2/demo_index2",
-    "pages/demo_index3/demo_index3"
+    "pages/demo_index3/demo_index3",
+    "pages/demo_index4/demo_index4"
   ],
   "window": {
     "backgroundTextStyle": "light",

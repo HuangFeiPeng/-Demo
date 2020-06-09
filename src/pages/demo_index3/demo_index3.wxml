@@ -1,6 +1,6 @@
 <!--src/pages/demo_index3/demo_index3.wxml-->
 <view class="title-box">
-    <text class="title">环信小程序Demo</text>
+    <text class="title">环信小程序Demo--聊天室</text>
 </view>
 <text>聊天室管理</text>
 <view>

@@ -339,5 +339,10 @@ Page({
     wx.navigateTo({
       url: '../demo_index3/demo_index3'
     })
+  },
+  nextpageEmedia: function(){
+    wx.navigateTo({
+      url: '../demo_index4/demo_index4'
+    })
   }
 })

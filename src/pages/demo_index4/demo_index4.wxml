@@ -1,0 +1,8 @@
+
+<view class="title-box">
+    <text class="title">环信小程序Demo--多人会议</text>
+</view>
+<view>
+    <button bind:tap="createCf">发起会议</button>
+</view>
+
