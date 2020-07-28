@@ -1,5 +1,6 @@
-let WebIM = require('../../utils/WebIM');
-WebIM = WebIM.default;
+// let WebIM = require('../../utils/WebIM');
+// WebIM = WebIM.default;
+const emedia =  wx.emedia = require('../../emedia/emedia_for_miniProgram');
 Page({
 
   /**ßßß
@@ -13,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('多人会议界面page',WebIM);
+    // console.log('多人会议界面page',WebIM);
   },
   createCf: function(){
     /* 
@@ -25,7 +26,8 @@ Page({
       //将ID password 发送给其他人
       console.warn('创建会议成功～',data);
       let MeetInfor = data.data.ticket; //创建出来的会议信息
-      let MeetInforJson = JSON.parse(MeetInfor); //将获取到的会议信息转换为json格式
+      // let MeetInforJson = JSON.parse(MeetInfor); //将获取到的会议信息转换为json格式
+      let MeetInforJson = MeetInfor; //将获取到的会议信息转换为json格式
       let ConfrId = MeetInforJson.confrId; //拿到创建出来的会议id
       console.log(MeetInforJson);
       //LBJ13H0545LENTFWNOZVAQ00C1332(confrid);

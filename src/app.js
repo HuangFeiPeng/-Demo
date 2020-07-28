@@ -3,10 +3,10 @@ let WebIM = wx.WebIM = require("./utils/WebIM")["default"];
 
 /* 引入多人音视频依赖的文件 */
 //emedia_for_miniProgram-test是沙箱环境测试版，线上环境请用emedia_for_miniProgram这个文件
-const emedia =  wx.emedia = require("./emedia/emedia_for_miniProgram");
+// const emedia =  wx.emedia = require("./emedia/emedia_for_miniProgram");
 
-console.log('WebIM', WebIM);
-console.log('emedia', emedia);
+console.log('WebIM', WebIM.conn.fetchHistoryMessages );
+// console.log('emedia', emedia);
 
 //app.js
 App({
@@ -239,16 +239,23 @@ App({
         // 查询黑名单，将好友拉黑，将好友从黑名单移除都会回调这个函数，list则是黑名单现有的所有好友信息
         console.log('》》》监听到黑名单~', list);
       },
+      onCustomMessage: function ( message ) {
+        console.log('>>>>收到自定义消息',message);
+      },  //收到自定义消息
       onRecallMessage: function (message) {}, //收到撤回消息回调
       onReceivedMessage: function (message) {
-        console.log()
+        console.log('收到消息送达服务器回执',message)
       }, //收到消息送达服务器回执
-      onDeliveredMessage: function (message) {}, //收到消息送达客户端回执
+      onDeliveredMessage: function (message) {
+        console.log('收到消息送达客户端回执',message);
+      }, //收到消息送达客户端回执
       onReadMessage: function (message) {
-        console.log('>>>>>收到已读消息回执！', message)
+        // console.log('>>>>>收到已读消息回执！', message)
       }, //收到消息已读回执
       onCreateGroup: function (message) {}, //创建群组成功回执（需调用createGroupNew）
-      onMutedMessage: function (message) {} //如果用户在A群组被禁言，在A群发消息会走这个回调并且消息不会传递给群其它成员
+      onMutedMessage: function (message) {
+        console.log(message,'被禁言的消息触发回调');
+      } //如果用户在A群组被禁言，在A群发消息会走这个回调并且消息不会传递给群其它成员
     });
     
     // 登录

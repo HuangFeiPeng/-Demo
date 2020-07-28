@@ -30,7 +30,8 @@ let config = {
 	 * Application AppKey
 	 */
 	// appkey: "easemob-demo#chatdemoui", //环信appkey
-	appkey: "1116200506098408#huangfeipeng", //我的appkey
+	appkey: "1130200429065315#zyictest", //我的appkey
+	// appkey: "1134180118115224#jfzh", //
 
 
 	/*
@@ -64,7 +65,7 @@ let config = {
 	 * will auto connect the xmpp server autoReconnectNumMax times in background when client is offline.
 	 * won't auto connect if autoReconnectNumMax=0.
 	 */
-	autoReconnectNumMax: 15,
+	autoReconnectNumMax: 5,
 	/**
 	 * the interval secons between each atuo reconnectting.
 	 * works only if autoReconnectMaxNum >= 2.
@@ -77,7 +78,7 @@ let config = {
 	/*
 	 * Set to auto sign-in
 	 */
-	isAutoLogin: true
+	isAutoLogin: false
 };
 
 export default config;

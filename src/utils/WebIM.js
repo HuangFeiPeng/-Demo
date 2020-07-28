@@ -1,4 +1,4 @@
-import websdk from "../sdk/webimSDK3.1.2"; //引入sdk文件；
+import websdk from "../sdk/wxsdk3.1.4"; //引入sdk文件；
 import config from "../utils/WebIMConfig"; //引入WebIMConfig配置文件；
 
 var window = {};

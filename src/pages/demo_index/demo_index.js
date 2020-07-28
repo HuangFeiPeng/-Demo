@@ -3,7 +3,7 @@ WebIM = WebIM.default;
 console.log('demo——index WebIM', WebIM)
 // conn = WebIM.conn;
 Page({
-
+  
   /**
    * 页面的初始数据
    */
@@ -13,23 +13,28 @@ Page({
     pad: "",
     filename: ""
   },
-
+  onShow:function(){
+    console.log('清空数组的count',wx.WebIM.conn.mr_cache);
+    // debugger
+    wx.WebIM.conn.mr_cache = [];
+  },
   //登录功能btn
   login: function () {
     let options = {
       apiUrl: WebIM.config.apiURL,
-      user: 'hfp',
-      pwd: '1',
+      user: 'ziyebingcha',
+      pwd: 'ziyebingcha',
       appKey: WebIM.config.appkey
+  
     };
     WebIM.conn.open(options);
   },
   //注册功能btn
   register: function () {
     var options = {
-      username: 'hfp',
+      username: 'text',
       password: '1',
-      nickname: '黄飞鹏',
+      nickname: '测试注册',
       appKey: WebIM.config.appkey,
       success: function (res) {
         console.log('用户注册成功！', res)
@@ -52,8 +57,8 @@ Page({
     var id = WebIM.conn.getUniqueId(); // 生成本地消息id
     var msg = new WebIM.message('txt', id); // 创建文本消息
     msg.set({
-      msg: 'message content', // 消息内容
-      to: '', // 接收消息对象（用户id）
+      msg: '小程序消息发送测试2', // 消息内容
+      to: '13031081380', // 接收消息对象（用户id）
       roomType: false,
       ext: {
         key: '1',
@@ -61,13 +66,14 @@ Page({
           key3: 'value2'
         }
       }, //扩展消息
-      success: function () {
-        console.log('send private text Success');
+      success: function (res) {
+        console.log('send private text Success',res);
       }, // 对成功的相关定义，sdk会将消息id登记到日志进行备份处理
       fail: function (e) {
         console.log("Send private text error", e);
       } // 对失败的相关定义，sdk会将消息id登记到日志进行备份处理
     });
+    console.log(msg);
     WebIM.conn.send(msg.body);
   },
   //群聊消息
@@ -96,7 +102,7 @@ Page({
     var msg = new WebIM.message('txt', id); // 创建文本消息
     var option = {
       msg: '聊天室消息发送测试', // 消息内容
-      to: '117006506459137', // 接收消息对象(聊天室id)
+      to: '122163737722883', // 接收消息对象(聊天室id)
       roomType: true, // 群聊类型，true时为聊天室，false时为群组
       ext: {}, // 扩展消息
       success: function () {

@@ -27,7 +27,7 @@ Page({
   //加入聊天室
   joinRoom: function () {
     WebIM.conn.joinChatRoom({
-      roomId: '117015302963201'
+      roomId: '122163737722883'
     })
   },
   //退出聊天室
