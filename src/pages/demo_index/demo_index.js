@@ -22,8 +22,8 @@ Page({
   login: function () {
     let options = {
       apiUrl: WebIM.config.apiURL,
-      user: 'ziyebingcha',
-      pwd: 'ziyebingcha',
+      user: 'hfp3',
+      pwd: '1',
       appKey: WebIM.config.appkey
   
     };
@@ -175,7 +175,7 @@ Page({
     var customEvent = "customEvent"; // 创建自定义事件
     var customExts = {}; // 消息内容，key/value 需要 string 类型
     msg.set({
-      to: 'i', // 接收消息对象（用户id）
+      to: 'zyictest', // 接收消息对象（用户id）
       customEvent,
       customExts,
       ext: {

@@ -5,4 +5,12 @@
 <view>
     <button bind:tap="createCf">发起会议</button>
 </view>
+<view>
+    <button bind:tap="joinCf">加入会议</button>
+</view>
+<view>
+    <button bind:tap="exitCf">退出会议</button>
+</view>
+  
+  
 

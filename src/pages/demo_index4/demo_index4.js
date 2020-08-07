@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    cofrID:"LBJ13H05522QKTGDILSGDH00C31794"
   },
 
   /**
@@ -45,5 +45,14 @@ Page({
         
     })
   })
+  },
+  joinCf:function(){
+    emedia.mgr.joinConference('LBJ13H05522QKTGDILSGDH00C31861', '').then(function(confr){
+      //confr 加入会议
+  })
+  },
+  exitCf:function(){
+    var confrID = this.cofrID
+    emedia.mgr.exitConference('LBJ13H05522QKTGDILSGDH00C31861');
   }
 })

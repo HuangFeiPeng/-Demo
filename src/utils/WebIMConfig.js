@@ -29,9 +29,9 @@ let config = {
 	/*
 	 * Application AppKey
 	 */
-	// appkey: "easemob-demo#chatdemoui", //环信appkey
-	appkey: "1130200429065315#zyictest", //我的appkey
-	// appkey: "1134180118115224#jfzh", //
+	appkey: "easemob-demo#chatdemoui", //环信appkey
+	// appkey: "1189170305115989#yuanxinbuluo", //我的appkey
+	// appkey: "1116200427157447#emdt", //
 
 
 	/*
@@ -44,7 +44,7 @@ let config = {
 	 * true: A visitor can sign in to multiple webpages and receive messages at all the webpages.
 	 * false: A visitor can sign in to only one webpage and receive messages at the webpage.
 	 */
-	isMultiLoginSessions: false,
+	isMultiLoginSessions: true,
 	/**
 	 * Whether to use window.doQuery()
 	 * @parameter {Boolean} true or false

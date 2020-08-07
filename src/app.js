@@ -2,8 +2,8 @@
 let WebIM = wx.WebIM = require("./utils/WebIM")["default"];
 
 /* 引入多人音视频依赖的文件 */
-//emedia_for_miniProgram-test是沙箱环境测试版，线上环境请用emedia_for_miniProgram这个文件
-// const emedia =  wx.emedia = require("./emedia/emedia_for_miniProgram");
+// emedia_for_miniProgram-test是沙箱环境测试版，线上环境请用emedia_for_miniProgram这个文件
+const emedia =  wx.emedia = require("./emedia/emedia_for_miniProgram");
 
 console.log('WebIM', WebIM.conn.fetchHistoryMessages );
 // console.log('emedia', emedia);
@@ -257,7 +257,18 @@ App({
         console.log(message,'被禁言的消息触发回调');
       } //如果用户在A群组被禁言，在A群发消息会走这个回调并且消息不会传递给群其它成员
     });
-    
+    wx.emedia.mgr.onMemberJoined = function(e){
+      var jid = wx.WebIM.conn.context.jid
+      let identityName = jid.appKey + '_' + jid.name+ '@' + jid.domain
+      var exitConfer;
+      // if (e.memName == identityName) {
+      //   exitConfer =  setTimeout(function(){console.log('定时器执行');wx.emedia.mgr.exitConference();},5000)
+      // } else {
+      //   clearTimeout(exitConfer);
+      // }  
+      console.log('》》》监听到有人加入会议',e);
+    }
+    wx.emedia.on
     // 登录
     wx.login({
       success: res => {
